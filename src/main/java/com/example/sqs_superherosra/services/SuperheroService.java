@@ -8,6 +8,7 @@ import com.example.sqs_superherosra.repos.SqsMessageRepository;
 import com.example.sqs_superherosra.repos.SuperheroRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.services.sqs.SqsClient;
 import software.amazon.awssdk.services.sqs.model.DeleteMessageRequest;
@@ -34,7 +35,8 @@ public class SuperheroService {
 		this.sqsClient = sqsClient;
 	}
 
-	@PostConstruct
+//	@PostConstruct
+	@Scheduled(fixedDelay = 1000)
 	public void consumeMessages() {
 		new Thread(() -> {
 			while (true) {
