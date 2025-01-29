@@ -38,8 +38,8 @@ public class SuperheroService {
 //	@PostConstruct
 	@Scheduled(fixedDelay = 1000)
 	public void consumeMessages() {
-		new Thread(() -> {
-			while (true) {
+//		new Thread(() -> {
+//			while (true) {
 				try {
 					// Poll messages from the SQS queue
 					ReceiveMessageRequest receiveMessageRequest = ReceiveMessageRequest.builder()
@@ -64,8 +64,9 @@ public class SuperheroService {
 					System.err.println("Error consuming messages: " + e.getMessage());
 				}
 			}
-		}).start();
-	}
+//		}
+//		).start();
+//	}
 
 	private void deleteMessageFromQueue(String receiptHandle) {
 		DeleteMessageRequest deleteMessageRequest = DeleteMessageRequest.builder()
